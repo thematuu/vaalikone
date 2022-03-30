@@ -17,13 +17,7 @@ public class HelloAppEngine extends HttpServlet {
 
     response.setContentType("text/plain");
     response.setCharacterEncoding("UTF-8");
-    //testii
-    //i90we5rieihjehiherjop
-    //testiii
-    //eclipse on paska softa
-    //Muhawashere
-    //muhatest
     response.getWriter().print("Hello App Engine!\r\n");
-
+    
   }
 }
