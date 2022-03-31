@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Vaalikone</title>
+<title>Vaalikone Questions</title>
 </head>
 <body>
 <h2>Answer these questions: </h2>

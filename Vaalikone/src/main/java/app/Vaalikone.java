@@ -58,5 +58,47 @@ public class Vaalikone extends HttpServlet {
 	    
 
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.setContentType("text/plain");
+	    response.setCharacterEncoding("UTF-8");
+		
+	  ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
+
+	  for (int i=0;questionList!=null && i<questionList.size();i++){
+	  	questions q=questionList.get(i);
+	  	
+	  	int id = (q.getId());
+	  	String idString = Integer.toString(id);
+	  	String answer = request.getParameter(idString);
+	  	Cookie c = new Cookie(idString, answer);
+	  	}
+	  
+	  response.getWriter().print("Test test test test");
+	  response.getWriter().print("<br>");
+	  response.getWriter().print("<br>");
+	  
+	  Cookie[] cookies = request.getCookies();
+	  ArrayList<String> idt = new ArrayList<String>();
+	  
+	  for (int i=0;questionList!=null && i<questionList.size();i++){
+		  
+		  questions q=questionList.get(i);
+		  	
+		  	int id = (q.getId());
+		  	String idString = Integer.toString(id);
+		  	idt.add(idString);
+	  }
+	    for(int i = 0; i < cookies.length; i++) { 
+	    	
+	        Cookie cookie1 = cookies[i];
+	        if (cookie1.getName().equals(idt.get(i))) {
+	        response.getWriter().print("Keksisi on: " + cookie1.getValue());
+	        }
+	    }  
+	    
+	}
 
 }
