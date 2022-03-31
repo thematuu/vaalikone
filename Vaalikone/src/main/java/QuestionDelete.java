@@ -11,24 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DaoKysymys;
 import data.kysymys;
 
-
-@WebServlet("/AdminPage")
-public class AdminPage extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	  private DaoKysymys dao=null;
-	  
-	  @Override public void init() { 
+@WebServlet(
+    name = "Delete",
+    urlPatterns = {"/deleteQuestion"}
+)
+public class QuestionDelete extends HttpServlet {
+	private DaoKysymys dao=null;
+	public void init() {
 		dao=new DaoKysymys("jdbc:mysql://localhost:3306/db_vaalikone", "root", "salasana"); }
-	 
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+	     throws IOException, ServletException {
+		String id=request.getParameter("id");
 		ArrayList<kysymys> list=null;
 		if (dao.getConnection()) {
-			list=dao.readAllKysymys();
-		}
-		else {
-			System.out.println("No connection to database");
+			list=dao.deleteKysymys(id);
 		}
 		request.setAttribute("kysymyslist", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/adminpage.jsp");

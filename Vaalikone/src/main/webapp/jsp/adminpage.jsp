@@ -11,13 +11,26 @@
 </head>
 <body>
 <%@ include file="../html/somehtml.html" %>
-
+<h2>Add question!</h2>
+        <form action="/AddQuestion" method="POST">
+            <p>
+                Give the question you want to add <input type="text" name="question">
+            </p>
+            <p>
+                <input type="submit" value="Add">
+            </p>
+        </form>	
+        <p>__________________________________________________________</p>
 <%
 ArrayList<kysymys> kysymysList=(ArrayList<kysymys>)request.getAttribute("kysymyslist");
 
 for (int i=0;kysymysList!=null && i<kysymysList.size();i++){
 	kysymys k=kysymysList.get(i);
-	out.println(k.getId()+": "+k.getkysymykset()+"<br>");
+	out.println("<p>ID: "+k.getId()+"  Question: "+k.getkysymykset()+"</p> <form action='/deleteQuestion' style='display: inline-block;' method='POST'><input type='hidden' name='id' value='"+k.getId()+"'><input type='submit' name='ok' value='Delete'></form>");
+	out.println("<form action='/UpdateQuestion' method='POST'>");
+	out.println("<input type='hidden' name='id' value='"+k.getId()+"'><br>UPDATE THE QUESTION: <input type='text' name='kysymys' value=''><br>");
+	out.println("<input type='submit' name='ok' value='Update'></form>");
+	out.println("<p>__________________________________________________________</p>");
 }
 %>
 
