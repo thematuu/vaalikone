@@ -61,23 +61,4 @@ public class Dao {
 		}
 	}
 
-
-//	public questions readQuestion(String id) {
-//		questions f=null;
-//		try {
-//			String sql="select * from kysymys where id=?";
-//			PreparedStatement pstmt=conn.prepareStatement(sql);
-//			pstmt.setString(1, id);
-//			ResultSet RS=pstmt.executeQuery();
-//			while (RS.next()){
-//				f=new questions();
-//				f.setId(RS.getInt("id"));
-//				f.setQuestion(RS.getString("kysymys"));
-//			}
-//			return f;
-//		}
-//		catch(SQLException e) {
-//			return null;
-//		}
-//	}
 }
