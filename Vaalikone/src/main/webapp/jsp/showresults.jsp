@@ -14,8 +14,14 @@
 </head>
 <body>
 <h2>Results: </h2>
-
+<br>
 <%
+ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
+for (int i=0;questionList!=null && i<questionList.size();i++){
+	  	
+	  	response.getWriter().print(request.getParameter(Integer.toString(i)));
+	  	out.println("hahaa");
+	  	}
 //ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
 
 //for (int i=0;questionList!=null && i<questionList.size();i++){

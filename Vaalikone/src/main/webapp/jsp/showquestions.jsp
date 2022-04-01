@@ -11,30 +11,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Vaalikone Questions</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 <h2>Answer these questions: </h2>
 <br><br>
 	<form action="/Vaalikone" method="POST">
+	<div class='grid-container'>
 <%
 ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
-
+int name = 0;
 for (int i=0;questionList!=null && i<questionList.size();i++){
 	questions q=questionList.get(i);
-	int id = 0;
+	out.println("<div class='grid-item'>");
 	out.println(i+1 + ": " + q.getQuestion()+"<br>");
 	%>
 				<p>
-				<input type="radio" id=<%out.println(q.getId() + "-option-5");%> name=<%out.println(q.getId());%>>strongly agree
-				<input type="radio" id=<%out.println(q.getId() + "-option-4");%> name=<%out.println(q.getId());%>>agree
-				<input type="radio" id=<%out.println(q.getId() + "-option-3");%> name=<%out.println(q.getId());%> checked>I'm not sure
-                <input type="radio" id=<%out.println(q.getId() + "-option-2");%> name=<%out.println(q.getId());%>>disagree 
-                <input type="radio" id=<%out.println(q.getId() + "-option-1");%> name=<%out.println(q.getId());%>>strongly disagree
-               	<br>
-               	<br>
-               	<br>
-            </p>    
+				<input type="radio" id=<%out.println(q.getId() + "-option-5");%> value=<%out.println(q.getId());%> name=<%out.println(name);%>>strongly agree
+				<input type="radio" id=<%out.println(q.getId() + "-option-5");%> value=<%out.println(q.getId());%> name=<%out.println(name);%>>agree
+				<input type="radio" id=<%out.println(q.getId() + "-option-5");%> value=<%out.println(q.getId());%> name=<%out.println(name);%> checked>I'm not sure
+                <input type="radio" id=<%out.println(q.getId() + "-option-5");%> value=<%out.println(q.getId());%> name=<%out.println(name);%>>disagree 
+                <input type="radio" id=<%out.println(q.getId() + "-option-5");%> value=<%out.println(q.getId());%> name=<%out.println(name);%>>strongly disagree
+               	</p>
+    		<%out.println("</div>");
+    		name++;
+    		%>
+    		
 	<%}%>
+	</div>
             <p>
                 <input type="submit" value="Submit">
             </p>
