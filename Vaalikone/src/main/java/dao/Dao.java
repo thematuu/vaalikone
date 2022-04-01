@@ -10,7 +10,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import data.questions;
-
+import data.User;
+import data.MD5;
+import java.sql.Connection;
 import java.sql.Connection;
 
 public class Dao {
@@ -60,5 +62,20 @@ public class Dao {
 			return null;
 		}
 	}
-
+	public String readUser(String username) {
+		String f=null;
+		try {
+			String sql="select * from adminlogin where username=?";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, username);
+			ResultSet RS=pstmt.executeQuery();
+			while (RS.next()){
+				f = RS.getString("password");
+			}
+			return f;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
 }
