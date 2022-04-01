@@ -9,8 +9,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import data.questions;
 import data.User;
 import data.MD5;
+import java.sql.Connection;
 import java.sql.Connection;
 
 public class Dao {
@@ -25,6 +27,7 @@ public class Dao {
 		this.pass=pass;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public boolean getConnection() {
 		try {
 	        if (conn == null || conn.isClosed()) {
@@ -42,7 +45,23 @@ public class Dao {
 			return false;
 		}
 	}
-
+	public ArrayList<questions> readAllQuestions() {
+		ArrayList<questions> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("select * from kysymys");
+			while (RS.next()){
+				questions f=new questions();
+				f.setId(RS.getInt("id"));
+				f.setQuestion(RS.getString("kysymykset"));
+				list.add(f);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
 	public String readUser(String username) {
 		String f=null;
 		try {
