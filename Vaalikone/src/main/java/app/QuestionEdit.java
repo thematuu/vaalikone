@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.kysymys;
+import data.questions;
 
 @WebServlet(
     urlPatterns = {"/UpdateQuestion"}
@@ -23,15 +23,15 @@ public class QuestionEdit extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	     throws IOException, ServletException {
 		String id=request.getParameter("id");
-		String kysymys=request.getParameter("kysymys");
-		System.out.println(kysymys);
-		kysymys k=new kysymys(id, kysymys);
-		System.out.println(k);
-		ArrayList<kysymys> list=null;
+		String question=request.getParameter("kysymys");
+		System.out.println(question);
+		questions q=new questions(id, question);
+		System.out.println(q);
+		ArrayList<questions> list=null;
 		if (dao.getConnection()) {
-			list=dao.updateKysymys(k);
+			list=dao.updateQuestion(q);
 		}
-		request.setAttribute("kysymyslist", list);
+		request.setAttribute("questionList", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/adminpage.jsp");
 		rd.forward(request, response);
 	}

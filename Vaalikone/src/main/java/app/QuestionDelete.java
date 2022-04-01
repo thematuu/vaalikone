@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
-import data.kysymys;
+import data.questions;
 
 @WebServlet(
     name = "Delete",
@@ -24,11 +24,11 @@ public class QuestionDelete extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	     throws IOException, ServletException {
 		String id=request.getParameter("id");
-		ArrayList<kysymys> list=null;
+		ArrayList<questions> list=null;
 		if (dao.getConnection()) {
-			list=dao.deleteKysymys(id);
+			list=dao.deleteQuestion(id);
 		}
-		request.setAttribute("kysymyslist", list);
+		request.setAttribute("questionList", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/adminpage.jsp");
 		rd.forward(request, response);
 	}

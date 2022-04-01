@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 import data.questions;
 import data.User;
-import data.kysymys;
-import data.MD5;
 import java.sql.Connection;
 import java.sql.Connection;
 
@@ -80,58 +78,58 @@ public class Dao {
 		}
 	}
 	
-	public ArrayList<kysymys> readAllKysymys() {
-		ArrayList<kysymys> list=new ArrayList<>();
+//	public ArrayList<kysymys> readAllKysymys() {
+//		ArrayList<kysymys> list=new ArrayList<>();
+//		try {
+//			Statement stmt=conn.createStatement();
+//			ResultSet RS=stmt.executeQuery("select * from kysymys");
+//			while (RS.next()){
+//				kysymys k=new kysymys();
+//				k.setId(RS.getInt("id"));
+//				k.setkysymykset(RS.getString("kysymykset"));
+//				list.add(k);
+//			}
+//			return list;
+//		}
+//		catch(SQLException e) {
+//			return null;
+//		}
+//	}
+	public ArrayList<questions> updateQuestion(questions q) {
 		try {
-			Statement stmt=conn.createStatement();
-			ResultSet RS=stmt.executeQuery("select * from kysymys");
-			while (RS.next()){
-				kysymys k=new kysymys();
-				k.setId(RS.getInt("id"));
-				k.setkysymykset(RS.getString("kysymykset"));
-				list.add(k);
-			}
-			return list;
-		}
-		catch(SQLException e) {
-			return null;
-		}
-	}
-	public ArrayList<kysymys> updateKysymys(kysymys k) {
-		try {
-			System.out.println(k.getkysymykset());
-			System.out.println(k.getId());
+			System.out.println(q.getQuestion());
+			System.out.println(q.getId());
 			String sql="update kysymys set kysymykset=? where id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, k.getkysymykset());
-			pstmt.setInt(2, k.getId());
+			pstmt.setString(1, q.getQuestion());
+			pstmt.setInt(2, q.getId());
 			pstmt.executeUpdate();
-			return readAllKysymys();
+			return readAllQuestions();
 		}
 		catch(SQLException e) {
 			return null;
 		}
 	}
-	public ArrayList<kysymys> deleteKysymys(String id) {
+	public ArrayList<questions> deleteQuestion(String id) {
 		try {
 			String sql="delete from kysymys where id=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
-			return readAllKysymys();
+			return readAllQuestions();
 		}
 		catch(SQLException e) {
 			return null;
 		}
 	}
 	
-	public ArrayList<kysymys> AddKysymys(String question) {
+	public ArrayList<questions> AddQuestion(String question) {
 		try {
 			String sql="INSERT INTO kysymys (kysymykset) values(?)";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, question);
 			pstmt.executeUpdate();
-			return readAllKysymys();
+			return readAllQuestions();
 		}
 		catch(SQLException e) {
 			return null;

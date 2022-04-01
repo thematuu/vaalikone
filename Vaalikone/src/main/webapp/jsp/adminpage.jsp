@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
      <%@ page import="java.util.ArrayList" %>   
- <%@ page import="data.kysymys" %> 
+ <%@ page import="data.questions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,14 +23,14 @@
         </form>	
         <div class='grid-container'>
 <%
-ArrayList<kysymys> kysymysList=(ArrayList<kysymys>)request.getAttribute("kysymyslist");
+ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
 
-for (int i=0;kysymysList!=null && i<kysymysList.size();i++){
-	kysymys k=kysymysList.get(i);
+for (int i=0;questionList!=null && i<questionList.size();i++){
+	questions q=questionList.get(i);
 	out.println("<div class='grid-item'>");
-	out.println("<p>ID: "+k.getId()+"  Question: "+k.getkysymykset()+"</p> <form action='/deleteQuestion' style='display: inline-block;' method='POST'><input type='hidden' name='id' value='"+k.getId()+"'><input type='submit' name='ok' value='Delete'></form>");
+	out.println("<p>ID: "+q.getId()+"  Question: "+q.getQuestion()+"</p> <form action='/deleteQuestion' style='display: inline-block;' method='POST'><input type='hidden' name='id' value='"+q.getId()+"'><input type='submit' name='ok' value='Delete'></form>");
 	out.println("<form action='/UpdateQuestion' method='POST'>");
-	out.println("<input type='hidden' name='id' value='"+k.getId()+"'><br>UPDATE THE QUESTION: <input type='text'data-required='true' size='50' name='kysymys' value=''><br>");
+	out.println("<input type='hidden' name='id' value='"+q.getId()+"'><br>UPDATE THE QUESTION: <input type='text'data-required='true' size='50' name='kysymys' value=''><br>");
 	out.println("<input type='submit' name='ok' value='Update'></form>");
 	out.println("</div>");
 }
