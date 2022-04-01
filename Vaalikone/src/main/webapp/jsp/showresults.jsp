@@ -3,6 +3,7 @@
  
  <%@ page import="java.util.ArrayList" %>   
  <%@ page import="data.questions" %>   
+ <%@ page import = "java.io.*,java.util.*" %>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     
@@ -15,24 +16,8 @@
 <body>
 <h2>Results: </h2>
 <br>
-<%
-ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
-for (int i=0;questionList!=null && i<questionList.size();i++){
-	  	
-	  	response.getWriter().print(request.getParameter(Integer.toString(i)));
-	  	out.println("hahaa");
-	  	}
-//ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
-
-//for (int i=0;questionList!=null && i<questionList.size();i++){
-//	questions q=questionList.get(i);
 	
-//	String id = String.valueOf(q.getId());
-//	String answer = request.getParameter(id);
-	//out.println(i+1 + ": " + q.getQuestion()+"<br>");
-//	Cookie c = new Cookie(id, answer);
-//	}
-	%>
+	
 <br><br>
 <h2>Have a nice day! </h2>
 	

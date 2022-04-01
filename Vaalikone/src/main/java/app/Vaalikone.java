@@ -2,6 +2,7 @@ package app;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,8 +63,39 @@ public class Vaalikone extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
+		
+		
 		response.setContentType("text/plain");
 	    response.setCharacterEncoding("UTF-8");
+	    
+	    
+
+		
+		Map<String, String[]> allMap = request.getParameterMap();
+		
+		
+		for (String key : allMap.keySet()) {
+		    String[] strArr = (String[]) allMap.get(key);
+		    for (String val : strArr) {
+		    	String valSplit = val.replace("-option-","-");
+		    	String[] parts = valSplit.split("-", 2);
+		    	String part1 = parts[0];
+		    	String part2 = parts[1];
+		    	Cookie c = new Cookie("id"+part1, part2);
+		    	c.setMaxAge(60*60*24);
+		    	response.addCookie(c);
+		    }
+		}
+
+		
+		Cookie[] cookies = request.getCookies();
+	
+		
+	    for (int i=0; i<cookies.length; i++) {
+	    	System.out.println(cookies[i].getName() + " " +
+	        cookies[i].getValue());
+	    }
 	    
 	    ArrayList<questions> list=null;
 		if (dao.getConnection()) {
@@ -73,53 +105,14 @@ public class Vaalikone extends HttpServlet {
 			System.out.println("No connection to the database!");
 		}
 		
-	    request.setAttribute("questionList", list);
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showquestions.jsp"); //TEE UUSI TIEDOSTO!
+		request.setAttribute("questionList", list);
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showresults.jsp");
 		rd.forward(request, response);
-		
-//	  ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
-//	  for (int i=0;questionList!=null && i<questionList.size();i++){
-//		  	
-//		  	response.getWriter().print(request.getParameter(Integer.toString(i)));
-//		  	System.out.println("hahaa");
-//		  	}
+	    
 
-//	  for (int i=0;questionList!=null && i<questionList.size();i++){
-//	  	questions q=questionList.get(i);
-//	  	
-//	  	int id = (q.getId());
-//	  	String idString = Integer.toString(id);
-//	  	String answer = request.getParameter(idString);
-//	  	Cookie c = new Cookie(idString, answer);
-//	  	response.addCookie(c);
-//	  	}
-//	  
-//	  response.getWriter().print("Test test test test");
-//
-//	  
-//	  Cookie[] cookies = request.getCookies();
-//	  for(int i = 0; i < cookies.length; i++) { 
-//	    	
-//	        Cookie cookie1 = cookies[i];
-//	        response.getWriter().print("Keksisi on: " + cookie1.getValue());
-//	        }
-//	  ArrayList<String> idt = new ArrayList<String>();
-//	  
-//	  for (int i=0;questionList!=null && i<questionList.size();i++){
-//		  
-//		  questions q=questionList.get(i);
-//		  	
-//		  	int id = (q.getId());
-//		  	String idString = Integer.toString(id);
-//		  	idt.add(idString);
-//	  }
-//	    for(int i = 0; i < cookies.length; i++) { 
-//	    	
-//	        Cookie cookie1 = cookies[i];
-//	        if (cookie1.getName().equals(idt.get(i))) {
-//	        response.getWriter().print("Keksisi on: " + cookie1.getValue());
-//	        }
-//	    }  
+	
+	    
+
 	    
 	}
 
