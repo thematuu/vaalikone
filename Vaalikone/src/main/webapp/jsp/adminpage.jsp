@@ -21,7 +21,6 @@
                 <input type="submit" value="Add">
             </p>
         </form>	
-        <p>__________________________________________________________</p>
         <div class='grid-container'>
 <%
 ArrayList<kysymys> kysymysList=(ArrayList<kysymys>)request.getAttribute("kysymyslist");
