@@ -1,3 +1,4 @@
+package app;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -8,24 +9,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DaoKysymys;
+import dao.Dao;
 import data.kysymys;
 
 @WebServlet(
-    name = "Delete",
-    urlPatterns = {"/deleteQuestion"}
+    urlPatterns = {"/UpdateQuestion"}
 )
-public class QuestionDelete extends HttpServlet {
-	private DaoKysymys dao=null;
+public class QuestionEdit extends HttpServlet {
+	private Dao dao=null;
 	public void init() {
-		dao=new DaoKysymys("jdbc:mysql://localhost:3306/db_vaalikone", "root", "salasana"); }
+		dao=new Dao("jdbc:mysql://localhost:3306/db_vaalikone", "root", "root"); }
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	     throws IOException, ServletException {
 		String id=request.getParameter("id");
+		String kysymys=request.getParameter("kysymys");
+		System.out.println(kysymys);
+		kysymys k=new kysymys(id, kysymys);
+		System.out.println(k);
 		ArrayList<kysymys> list=null;
 		if (dao.getConnection()) {
-			list=dao.deleteKysymys(id);
+			list=dao.updateKysymys(k);
 		}
 		request.setAttribute("kysymyslist", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/adminpage.jsp");
