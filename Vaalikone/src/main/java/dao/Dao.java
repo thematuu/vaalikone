@@ -123,6 +123,23 @@ public class Dao {
 		}
 	}
 	
+	public ArrayList<questions> showCandidates() {
+		ArrayList<questions> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("select * from ehdokas");
+			while (RS.next()){
+				questions f=new questions();
+				f.setId(RS.getInt("id"));
+				f.setQuestion(RS.getString("ehdokas"));
+				list.add(f);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
 	public ArrayList<questions> AddQuestion(String question) {
 		try {
 			String sql="INSERT INTO kysymys (kysymykset) values(?)";
@@ -134,5 +151,5 @@ public class Dao {
 		catch(SQLException e) {
 			return null;
 		}
-	}
+}
 }

@@ -3,6 +3,13 @@ package data;
 public class questions {
 	private int id;
 	private String question;
+	private String candidate;
+	public String getCandidate() {
+		return candidate;
+	}
+	public void setCandidate(String candidate) {
+		this.candidate = candidate;
+	}
 	public questions(String id, String question) {
 		// TODO Auto-generated constructor stub
 		setId(id);
