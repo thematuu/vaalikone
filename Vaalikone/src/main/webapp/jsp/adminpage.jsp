@@ -21,7 +21,7 @@ response.sendRedirect("/admin.html");
 else{
 }
 %>
-<a href="Logout">Logout</a> |  
+<a href="Logout">Logout</a>
 <h2>Add question!</h2>
         <form action="/AddQuestion" method="POST">
             <p>
