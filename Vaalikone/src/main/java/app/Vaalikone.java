@@ -109,7 +109,6 @@ public class Vaalikone extends HttpServlet {
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showresults.jsp");
 		rd.forward(request, response);
 		
-		//comment goes here!
 	    
 
 	

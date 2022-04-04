@@ -13,6 +13,7 @@ import data.questions;
 import data.User;
 import java.sql.Connection;
 import java.sql.Connection;
+import data.answers;
 
 public class Dao {
 	private String url;
@@ -78,23 +79,7 @@ public class Dao {
 		}
 	}
 	
-//	public ArrayList<kysymys> readAllKysymys() {
-//		ArrayList<kysymys> list=new ArrayList<>();
-//		try {
-//			Statement stmt=conn.createStatement();
-//			ResultSet RS=stmt.executeQuery("select * from kysymys");
-//			while (RS.next()){
-//				kysymys k=new kysymys();
-//				k.setId(RS.getInt("id"));
-//				k.setkysymykset(RS.getString("kysymykset"));
-//				list.add(k);
-//			}
-//			return list;
-//		}
-//		catch(SQLException e) {
-//			return null;
-//		}
-//	}
+
 	public ArrayList<questions> updateQuestion(questions q) {
 		try {
 			System.out.println(q.getQuestion());
@@ -130,6 +115,34 @@ public class Dao {
 			pstmt.setString(1, question);
 			pstmt.executeUpdate();
 			return readAllQuestions();
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+	
+	public ArrayList<answers> readAllAnswers(String etunimi, String sukunimi) {
+		ArrayList<answers> list=new ArrayList<>();
+		try {
+			String sql="select id from ehdokas where etunimi=? and sukunimi=?";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, etunimi);
+			pstmt.setString(2, sukunimi);
+			ResultSet RS=pstmt.executeQuery();
+			String idString = String.valueOf(RS);
+			
+			String sql2="select vastaukset from vastaus where eid=?";
+			PreparedStatement pstmt2=conn.prepareStatement(sql2);
+			pstmt2.setString(1, idString);
+			RS=pstmt2.executeQuery();
+			while (RS.next()){
+				answers a=new answers();
+				a.setKid(RS.getInt("kid"));
+				a.setAnswer(RS.getString("vastaukset"));
+				list.add(a);
+			}
+			
+			return list;
 		}
 		catch(SQLException e) {
 			return null;
