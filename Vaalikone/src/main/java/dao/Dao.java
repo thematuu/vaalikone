@@ -127,11 +127,11 @@ public class Dao {
 		ArrayList<questions> list=new ArrayList<>();
 		try {
 			Statement stmt=conn.createStatement();
-			ResultSet RS=stmt.executeQuery("select * from ehdokas");
+			ResultSet RS=stmt.executeQuery("SELECT * FROM ehdokas");
 			while (RS.next()){
 				questions f=new questions();
 				f.setId(RS.getInt("id"));
-				f.setQuestion(RS.getString("ehdokas"));
+				f.setCandidate(RS.getString("ehdokas"));
 				list.add(f);
 			}
 			return list;
