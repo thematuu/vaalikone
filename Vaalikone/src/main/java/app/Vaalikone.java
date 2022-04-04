@@ -108,6 +108,8 @@ public class Vaalikone extends HttpServlet {
 		request.setAttribute("questionList", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showresults.jsp");
 		rd.forward(request, response);
+		
+		//comment goes here!
 	    
 
 	
