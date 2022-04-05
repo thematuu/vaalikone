@@ -3,13 +3,28 @@ package data;
 public class questions {
 	private int id;
 	private String question;
-	private String candidate;
-	public String getCandidate() {
-		return candidate;
+	private String candidateFirstName;
+	public String getCandidateFirstName() {
+		return candidateFirstName;
 	}
-	public void setCandidate(String candidate) {
-		this.candidate = candidate;
+	public void setCandidateFirstName(String candidateFirstName) {
+		this.candidateFirstName = candidateFirstName;
 	}
+	public String getCandidateLastName() {
+		return candidateLastName;
+	}
+	public void setCandidateLastName(String candidateLastName) {
+		this.candidateLastName = candidateLastName;
+	}
+	public String getCandidateParty() {
+		return candidateParty;
+	}
+	public void setCandidateParty(String candidateParty) {
+		this.candidateParty = candidateParty;
+	}
+	private String candidateLastName;
+	private String candidateParty;
+
 	public questions(String id, String question) {
 		// TODO Auto-generated constructor stub
 		setId(id);

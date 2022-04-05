@@ -19,7 +19,7 @@ ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("qu
 for (int i=0;questionList!=null && i<questionList.size();i++){
 	questions q=questionList.get(i);
 	out.println("<div class='grid-item'>");
-	out.println("<p> Candidate: "+q.getCandidate()+ "</p>");
+	out.println("<p> First Name: <b>"+q.getCandidateFirstName() +"</b><br>Last Name: <b>"+q.getCandidateLastName()+ "</b><br>Party: <b>"+q.getCandidateParty()+"</b></p>");
 	out.println("</div>");
 }
 %>
