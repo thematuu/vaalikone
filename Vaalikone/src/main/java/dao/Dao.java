@@ -131,7 +131,7 @@ public class Dao {
 			while (RS.next()){
 				questions f=new questions();
 				f.setId(RS.getInt("id"));
-				f.setCandidate(RS.getString("ehdokas"));
+				f.setCandidate(RS.getString("etunimi"));
 				list.add(f);
 			}
 			return list;

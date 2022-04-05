@@ -14,7 +14,6 @@
 </head>
 <body>
 <h1>Candidates</h1>
-<p>This is a test</p>
 <%
 ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
 for (int i=0;questionList!=null && i<questionList.size();i++){
