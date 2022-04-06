@@ -2,6 +2,7 @@ package app;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -81,13 +82,16 @@ public class Vaalikone extends HttpServlet {
 				response.addCookie(c);
 			}
 		}
-
+		// keksit loppuu
+		// keksit loppuu
+		// keksit loppuu
+		// keksit loppuu
 		Cookie[] cookies = request.getCookies();
 
 		for (int i = 0; i < cookies.length; i++) {
 			System.out.println(cookies[i].getName() + " " + cookies[i].getValue());
 		}
-		// keksit loppuu
+		
 		ArrayList<questions> list = null;
 		if (dao.getConnection()) {
 			list = dao.readAllQuestions();
@@ -113,15 +117,15 @@ public class Vaalikone extends HttpServlet {
 		/// TEST
 		ArrayList<questions> questionList = (ArrayList<questions>) list;
 		ArrayList<candidate> candidateList = (ArrayList<candidate>) list2;
-		ArrayList<ResultScoring> Scorelist = new ArrayList<>();
+		ArrayList<ResultScoring> Scorelist = new ArrayList<ResultScoring>() ;
 		for (int j = 0; candidateList != null && j < candidateList.size(); j++) {
-			response.getWriter().println();
-			response.getWriter().println();
+			//response.getWriter().println();
+			//response.getWriter().println();
 			candidate c = candidateList.get(j);
-			response.getWriter().println("candidate ID: " + c.getId());
+			//response.getWriter().println("candidate ID: " + c.getId());
 			for (int i = 0; questionList != null && i < questionList.size(); i++) {
 				questions q = questionList.get(i);
-				response.getWriter().println("questions ID: " + q.getId());
+				//response.getWriter().println("questions ID: " + q.getId());
 
 				String canditateAnswer = null;
 				if (dao.getConnection()) {
@@ -129,24 +133,35 @@ public class Vaalikone extends HttpServlet {
 					String kid = Integer.toString(q.getId());
 					canditateAnswer = dao.readAnswer(eid, kid);
 					int canditateAnswerInt = Integer.parseInt(canditateAnswer);
-					response.getWriter().println("Canditaatin vastaus: " + canditateAnswerInt);
+					//response.getWriter().println("Canditaatin vastaus: " + canditateAnswerInt);
 					for (int l = 0; l < cookies.length; l++) {
 						Cookie cookie1 = cookies[l];
 						int userAnswer = 0;
 						if (cookie1.getName().equals("id" + kid)) {
 							userAnswer = Integer.parseInt(cookie1.getValue());
-							response.getWriter().print("Vastasit: " + userAnswer);
-							response.getWriter().println();
+							//response.getWriter().print("Vastasit: " + userAnswer);
+							//response.getWriter().println();
 							ResultScoring rs = new ResultScoring();
 							int score = rs.score(userAnswer, canditateAnswerInt);
-							response.getWriter().println("Score: " + score);
-							ResultScoring s = new ResultScoring();
-							s.setId(Integer.parseInt(eid));
-							s.setTotalPoints(score);
-							Scorelist.add(s);
+							//response.getWriter().println("Score: " + score);
+							System.out.println(j);
+							if (j >= Scorelist.size() || j < 0) {  //Scorelist.get(j) != null //Scorelist.size()==j
+								System.out.println("TESTI");
+								ResultScoring s = new ResultScoring();
+								s.setId(Integer.parseInt(eid));
+								s.setTotalPoints(score);
+								Scorelist.add(s);
+								
+							}
+							else{
+								int TotalScore=score+Scorelist.get(j).getTotalPoints();
+								Scorelist.get(j).setTotalPoints(TotalScore);
+								System.out.println("boo");
+							}
+							System.out.println(Scorelist.get(j));
 						}
 					}
-					response.getWriter().println();
+					//response.getWriter().println();
 
 				} else {
 					System.out.println("No connection to the database!");
@@ -154,18 +169,22 @@ public class Vaalikone extends HttpServlet {
 
 			}
 		}
+		/// sortti tähän !!!!
+		/// Collections.sort(Scorelist); 
+		Collections.sort(Scorelist);
 		for (int j = 0; Scorelist != null && j < Scorelist.size(); j++) {
 			ResultScoring s = Scorelist.get(j);
-			response.getWriter().println("Candidate ID: " + s.getId());
-			response.getWriter().println("Candidate TotalPoints: " + s.getTotalPoints());
+			System.out.println("Candidate ID: " + s.getId());
+			System.out.println("Candidate TotalPoints: " + s.getTotalPoints());
 		}
 		// Test
 
-		request.setAttribute("questionList", list);
+		//request.setAttribute("questionList", list);
 		request.setAttribute("candidateList", list2);
+		request.setAttribute("Scorelist", Scorelist);
 		// request.setAttribute("candidateAnswer", s);
-		// RequestDispatcher rd=request.getRequestDispatcher("/jsp/showresults.jsp");
-		// rd.forward(request, response);
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showresults.jsp");
+		rd.forward(request, response);
 
 	}
 

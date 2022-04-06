@@ -1,6 +1,6 @@
 package data;
 
-public class ResultScoring {
+public class ResultScoring implements java.lang.Comparable<ResultScoring>{
 	private int id;
 	private int TotalPoints;
 	
@@ -42,6 +42,15 @@ public ResultScoring(int id, int TotalPoints) {
 	public void setTotalPoints(int totalPoints) {
 		TotalPoints = totalPoints;
 	}
+	
+	public int compareTo(ResultScoring comparestu) {
+        int compareTotalPoints=((ResultScoring)comparestu).getTotalPoints();
+       // For Descending order do like this
+        return compareTotalPoints-this.TotalPoints;
+
+        // For Ascending order
+        //return this.TotalPoints-compareTotalPoints;
+    }
 	
 	
 }
