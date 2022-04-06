@@ -14,20 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.Dao;
 import data.questions;
-import data.candidate;
+import data.party;
 
 /**
  * Servlet implementation class Converter
  */
-@WebServlet("/Ehdokkaat")
-public class Ehdokkaat extends HttpServlet {
+@WebServlet("/Parties")
+public class Parties extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao=null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Ehdokkaat() {
+	public Parties() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,17 +46,16 @@ public class Ehdokkaat extends HttpServlet {
 		response.setContentType("text/plain");
 	    response.setCharacterEncoding("UTF-8");
 	    
-		ArrayList<candidate> list=null;
+		ArrayList<party> list=null;
 		if (dao.getConnection()) {
-			
-			list=dao.showCandidates();
+			list=dao.showParties();
 		}
 		else {
 			System.out.println("No connection to the database!");
 		}
 		
 		request.setAttribute("questionList", list);
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/candidates.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/jsp/parties.jsp");
 		rd.forward(request, response);
 	    
 

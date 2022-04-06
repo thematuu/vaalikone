@@ -3,8 +3,8 @@
     
      <%@ page import="java.util.ArrayList" %>   
  <%@ page import="data.questions" %> 
- <%@ page import="app.Login" %> 
  <%@ page import="dao.Dao" %>  
+  <%@ page import="data.candidate" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,12 +15,21 @@
 <body>
 <h1>Candidates</h1>
 <%
-ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
+String party = request.getParameter("party");
+if(party.equals("Vihreat")){
+	party = "Vihreät";
+}
+ArrayList<candidate> questionList=(ArrayList<candidate>)request.getAttribute("questionList");
 for (int i=0;questionList!=null && i<questionList.size();i++){
-	questions q=questionList.get(i);
-	out.println("<div class='grid-item'>");
-	out.println("<p> First Name: <b>"+q.getCandidateFirstName() +"</b><br>Last Name: <b>"+q.getCandidateLastName()+ "</b><br>Party: <b>"+q.getCandidateParty()+"</b></p>");
-	out.println("</div>");
+	candidate q=questionList.get(i);
+
+	if(q.getCandidateParty().equals(party)){
+		out.println("<div class='grid-item'>");
+		out.println("<p> First Name: <b>"+q.getCandidateFirstName() +"</b><br>Last Name: <b>"+q.getCandidateLastName()+ "</b><br>Party: <b>"+q.getCandidateParty()+"</b></p>");
+		out.println("</div>");
+	}
+	
+	
 }
 %>
 </body>
