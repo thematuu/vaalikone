@@ -188,18 +188,7 @@ public class Dao {
 	public ArrayList<answers> readAllAnswers() {
 		ArrayList<answers> list=new ArrayList<>();
 		try {
-//			String sql="select id from ehdokas where etunimi=? and sukunimi=?";
-//			PreparedStatement pstmt=conn.prepareStatement(sql);
-//			pstmt.setString(1, etunimi);
-//			pstmt.setString(2, sukunimi);
-//			ResultSet RS=pstmt.executeQuery();
-//			String idString = String.valueOf(RS);
-			
-			
-//			String sql2="select vastaukset from vastaus where eid=? and kid=?";
 			Statement pstmt2=conn.createStatement();
-//			pstmt2.setString(1, idString);
-//			pstmt2.setString(2, kid);
 			ResultSet RS=pstmt2.executeQuery("select * from vastaus");
 			while (RS.next()){
 				answers a=new answers();

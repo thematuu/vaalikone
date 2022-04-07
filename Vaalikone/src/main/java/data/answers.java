@@ -40,14 +40,7 @@ public class answers {
 	public void setKid(int kid) {
 		this.kid = kid;
 	}
-//	public void setKid(String kid) {
-//		try {
-//		this.eid = Integer.parseInt(kid);
-//		}
-//		catch(NumberFormatException | NullPointerException e) {
-//			//Do nothing - the value of id won't be changed
-//		}
-//	}
+
 	public void setId(String id) {
 		try {
 			this.id = Integer.parseInt(id);

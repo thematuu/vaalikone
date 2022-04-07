@@ -25,7 +25,7 @@
 <%
 ArrayList<String> answerList=(ArrayList<String>)request.getAttribute("answerList");
 ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
-
+ArrayList<String> cookieList=(ArrayList<String>)request.getAttribute("cookieList");
 for (int i=0;questionList!=null && i<questionList.size();i++){
 	questions q=questionList.get(i);
 	out.println("<div class='grid-item'>");
@@ -59,7 +59,7 @@ for (int i=0;questionList!=null && i<questionList.size();i++){
 				option = "Candidate hasn't answered to this question yet.";
 			}
 			
-			out.println("<p>" + a+ ": " + option + "</p>");
+			out.println("<p> Candidate answer: " + a+ ": " + option + "</p>");
 			
 		}
 		
@@ -68,9 +68,45 @@ for (int i=0;questionList!=null && i<questionList.size();i++){
 			out.println("<p>" + option + "</p>");
 		}
 		
-			
+		if (cookieList.size() != 0) {
+			out.println("<p> Your answer: ");
+		
+		if (i < cookieList.size()) {
+			a=cookieList.get(i);
 		
 	
+	
+			
+			if (a.equals("1")) {
+				option = "strongly disagree";
+			}
+			else if (a.equals("2")) {
+				option = "disagree";
+			}
+			else if (a.equals("3")) {
+				option = "I'm not sure";
+			}
+			else if (a.equals("4")) {
+				option = "agree";
+			}
+			else if (a.equals("5")) {
+				option = "strongly agree";
+			}
+			else {
+				option = "Candidate hasn't answered to this question yet.";
+			}
+			
+			out.println("" + a+ ": " + option + "</p>");
+			
+		}
+		
+		else {
+			option = "Candidate hasn't answered to this question yet.";
+			out.println("<p>" + option + "</p>");
+		}
+			
+		
+	}
 	
 	out.println("</div>");
 	
