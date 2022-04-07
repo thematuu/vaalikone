@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import data.questions;
 import data.User;
+import data.candidate;
+
 import java.sql.Connection;
 import java.sql.Connection;
 import data.party;
@@ -80,23 +82,6 @@ public class Dao {
 		}
 	}
 	
-//	public ArrayList<kysymys> readAllKysymys() {
-//		ArrayList<kysymys> list=new ArrayList<>();
-//		try {
-//			Statement stmt=conn.createStatement();
-//			ResultSet RS=stmt.executeQuery("select * from kysymys");
-//			while (RS.next()){
-//				kysymys k=new kysymys();
-//				k.setId(RS.getInt("id"));
-//				k.setkysymykset(RS.getString("kysymykset"));
-//				list.add(k);
-//			}
-//			return list;
-//		}
-//		catch(SQLException e) {
-//			return null;
-//		}
-//	}
 	public ArrayList<questions> updateQuestion(questions q) {
 		try {
 			System.out.println(q.getQuestion());
@@ -176,5 +161,45 @@ public class Dao {
 		catch(SQLException e) {
 			return null;
 		}
-}
+
+	}
+
+	public ArrayList<candidate> readAllCandidates() {
+		ArrayList<candidate> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("select * from ehdokas");
+			while (RS.next()){
+				candidate c=new candidate();
+				c.setId(RS.getInt("id"));
+				c.setFirstName(RS.getString("etunimi"));
+				c.setLastName(RS.getString("sukunimi"));
+				c.setParty(RS.getString("puolue"));
+				list.add(c);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+	
+	public String readAnswer(String eid, String kid) {
+		String a=null;
+		try {
+			String sql="select * from vastaus where eid=? AND kid=?";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, eid);
+			pstmt.setString(2, kid);
+			ResultSet RS=pstmt.executeQuery();
+			while (RS.next()){
+				a = RS.getString("vastaukset");
+			}
+			return a;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+
 }
