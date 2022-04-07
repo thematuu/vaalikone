@@ -3,6 +3,7 @@
     
      <%@ page import="java.util.ArrayList" %>   
  <%@ page import="data.questions" %> 
+ <%@ page import="app.Login" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,15 @@
 </head>
 <body>
 <%@ include file="../html/somehtml.html" %>
+<%
+if(session.getAttribute("currentSessionUser")==null)
+{
+response.sendRedirect("/admin.html");
+}
+else{
+}
+%>
+<a href="Logout">Logout</a>
 <h2>Add question!</h2>
         <form action="/AddQuestion" method="POST">
             <p>

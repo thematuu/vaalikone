@@ -11,9 +11,13 @@ import java.util.ArrayList;
 
 import data.questions;
 import data.User;
+import data.candidate;
+
 import java.sql.Connection;
 import java.sql.Connection;
 import data.answers;
+import data.party;
+import data.candidate;
 
 public class Dao {
 	private String url;
@@ -79,7 +83,6 @@ public class Dao {
 		}
 	}
 	
-
 	public ArrayList<questions> updateQuestion(questions q) {
 		try {
 			System.out.println(q.getQuestion());
@@ -108,6 +111,46 @@ public class Dao {
 		}
 	}
 	
+	public ArrayList<candidate> showCandidates() {
+		ArrayList<candidate> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("SELECT * FROM ehdokas");
+			while (RS.next()){
+				candidate f=new candidate();
+				f.setId(RS.getInt("id"));
+				f.setCandidateFirstName(RS.getString("etunimi"));
+				f.setCandidateLastName(RS.getString("sukunimi"));
+				f.setCandidateParty(RS.getString("puolue"));
+				list.add(f);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+	
+	public ArrayList<party> showParties() {
+		ArrayList<party> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("SELECT * FROM puolueet");
+			while (RS.next()){
+				party f=new party();
+				f.setId(RS.getInt("id"));
+				f.setParties(RS.getString("puolue"));
+				list.add(f);
+			}
+			
+			return list;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+
+	
 	public ArrayList<questions> AddQuestion(String question) {
 		try {
 			String sql="INSERT INTO kysymys (kysymykset) values(?)";
@@ -119,8 +162,29 @@ public class Dao {
 		catch(SQLException e) {
 			return null;
 		}
+
 	}
-	
+
+	public ArrayList<candidate> readAllCandidates() {
+		ArrayList<candidate> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("select * from ehdokas");
+			while (RS.next()){
+				candidate c=new candidate();
+				c.setId(RS.getInt("id"));
+				c.setFirstName(RS.getString("etunimi"));
+				c.setLastName(RS.getString("sukunimi"));
+				c.setParty(RS.getString("puolue"));
+				list.add(c);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+
 	public ArrayList<answers> readAllAnswers(String etunimi, String sukunimi) {
 		ArrayList<answers> list=new ArrayList<>();
 		try {
@@ -143,6 +207,20 @@ public class Dao {
 			}
 			
 			return list;
+
+	public String readAnswer(String eid, String kid) {
+		String a=null;
+		try {
+			String sql="select * from vastaus where eid=? AND kid=?";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, eid);
+			pstmt.setString(2, kid);
+			ResultSet RS=pstmt.executeQuery();
+			while (RS.next()){
+				a = RS.getString("vastaukset");
+			}
+			return a;
+
 		}
 		catch(SQLException e) {
 			return null;
