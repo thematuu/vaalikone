@@ -38,3 +38,19 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	background-color: #2196F3;
 }
+.grid-container-party {
+  display: grid;
+  column-gap: 20px;
+  grid-template-columns: 1 1 1;
+  padding: 10px;
+  row-gap: 20px;
+}
+
+.grid-item-party {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 25px;
+}

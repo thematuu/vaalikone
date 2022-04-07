@@ -2,6 +2,30 @@ package data;
 
 public class candidate {
 	private int id;
+  //muhan
+	private String candidateLastName;
+	private String candidateParty;
+	public String getCandidateLastName() {
+		return candidateLastName;
+	}
+	public void setCandidateLastName(String candidateLastName) {
+		this.candidateLastName = candidateLastName;
+	}
+	public String getCandidateParty() {
+		return candidateParty;
+	}
+	public void setCandidateParty(String candidateParty) {
+		this.candidateParty = candidateParty;
+	}
+	public String getCandidateFirstName() {
+		return candidateFirstName;
+	}
+	public void setCandidateFirstName(String candidateFirstName) {
+		this.candidateFirstName = candidateFirstName;
+	}
+	private String candidateFirstName;
+  //muhanloppuu
+  //Matiaksen
 	private String FirstName;
 	private String LastName;
 	private String Party;
@@ -57,4 +81,5 @@ public class candidate {
 			//Do nothing - the value of id won't be changed
 		}
 	}
+
 }

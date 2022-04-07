@@ -15,6 +15,8 @@ import data.candidate;
 
 import java.sql.Connection;
 import java.sql.Connection;
+import data.party;
+import data.candidate;
 
 public class Dao {
 	private String url;
@@ -80,23 +82,6 @@ public class Dao {
 		}
 	}
 	
-//	public ArrayList<kysymys> readAllKysymys() {
-//		ArrayList<kysymys> list=new ArrayList<>();
-//		try {
-//			Statement stmt=conn.createStatement();
-//			ResultSet RS=stmt.executeQuery("select * from kysymys");
-//			while (RS.next()){
-//				kysymys k=new kysymys();
-//				k.setId(RS.getInt("id"));
-//				k.setkysymykset(RS.getString("kysymykset"));
-//				list.add(k);
-//			}
-//			return list;
-//		}
-//		catch(SQLException e) {
-//			return null;
-//		}
-//	}
 	public ArrayList<questions> updateQuestion(questions q) {
 		try {
 			System.out.println(q.getQuestion());
@@ -125,6 +110,46 @@ public class Dao {
 		}
 	}
 	
+	public ArrayList<candidate> showCandidates() {
+		ArrayList<candidate> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("SELECT * FROM ehdokas");
+			while (RS.next()){
+				candidate f=new candidate();
+				f.setId(RS.getInt("id"));
+				f.setCandidateFirstName(RS.getString("etunimi"));
+				f.setCandidateLastName(RS.getString("sukunimi"));
+				f.setCandidateParty(RS.getString("puolue"));
+				list.add(f);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+	
+	public ArrayList<party> showParties() {
+		ArrayList<party> list=new ArrayList<>();
+		try {
+			Statement stmt=conn.createStatement();
+			ResultSet RS=stmt.executeQuery("SELECT * FROM puolueet");
+			while (RS.next()){
+				party f=new party();
+				f.setId(RS.getInt("id"));
+				f.setParties(RS.getString("puolue"));
+				list.add(f);
+			}
+			
+			return list;
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
+
+	
 	public ArrayList<questions> AddQuestion(String question) {
 		try {
 			String sql="INSERT INTO kysymys (kysymykset) values(?)";
@@ -136,6 +161,7 @@ public class Dao {
 		catch(SQLException e) {
 			return null;
 		}
+
 	}
 
 	public ArrayList<candidate> readAllCandidates() {
@@ -175,4 +201,5 @@ public class Dao {
 			return null;
 		}
 	}
+
 }
