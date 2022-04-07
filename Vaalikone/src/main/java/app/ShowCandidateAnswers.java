@@ -46,16 +46,9 @@ public class ShowCandidateAnswers extends HttpServlet {
 			throws ServletException, IOException {
 	    String etunimi = request.getParameter("etunimi");
 	    String sukunimi = request.getParameter("sukunimi");
+	    int id = Integer.parseInt(request.getParameter("id"));
 	    
-	    ArrayList<answers> list=null;
-		if (dao.getConnection()) {
-			list=dao.readAllAnswers(etunimi, sukunimi);
-		}
-		else {
-			System.out.println("No connection to the database!");
-		}
-		
-		ArrayList<questions> list2=null;
+	    ArrayList<questions> list2=null;
 		if (dao.getConnection()) {
 			list2=dao.readAllQuestions();
 		}
@@ -63,10 +56,42 @@ public class ShowCandidateAnswers extends HttpServlet {
 			System.out.println("No connection to the database!");
 		}
 		
-		request.setAttribute("answerList", list);
+		
+	    
+	    ArrayList<answers> list=null;
+		if (dao.getConnection()) {
+			list=dao.readAllAnswers();
+		}
+		else {
+			System.out.println("No connection to the database!");
+		}
+		
+		
+		
+		ArrayList<String> list3=new ArrayList<String>();
+	
+		for (int p=0;list2!=null && p<list2.size();p++) {
+			questions q = list2.get(p);
+			for (int a=0;list!=null && a<list.size();a++) {
+				answers an = list.get(a);
+				
+				if (an.getEid() == id && q.getId() == an.getKid()) {
+					list3.add(an.getAnswer());
+				}
+			}
+
+		}
+		
+		
+		
+	
+		
+		
+
+		request.setAttribute("answerList", list3);
 		request.setAttribute("questionList", list2);
-		request.setAttribute("candidateFirstname", etunimi);
-		request.setAttribute("candidateLastname", sukunimi);
+		request.setAttribute("candidateFirstName", etunimi);
+		request.setAttribute("candidateLastName", sukunimi);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/ShowCandidateAnswers.jsp");
 		rd.forward(request, response);
 	    

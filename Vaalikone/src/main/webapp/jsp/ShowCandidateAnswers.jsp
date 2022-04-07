@@ -23,40 +23,54 @@
 	
 	<div class='grid-container'>
 <%
-ArrayList<answers> answerList=(ArrayList<answers>)request.getAttribute("answerList");
+ArrayList<String> answerList=(ArrayList<String>)request.getAttribute("answerList");
 ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
 
 for (int i=0;questionList!=null && i<questionList.size();i++){
 	questions q=questionList.get(i);
 	out.println("<div class='grid-item'>");
 	out.println(q.getQuestion()+"<br>");
-	int id =(q.getId());
-	for (int k=0;answerList!=null && k<answerList.size();k++){
-		answers a=answerList.get(k);
-		int kid = a.getKid();
-		if (id == kid) {
-			String answer = a.getAnswer();
-			String option = null;
-			if (answer.equals("1")) {
+	String id = Integer.toString(q.getId());
+		
+		String a = null;
+		String option = null;
+		if (i < answerList.size()) {
+			a=answerList.get(i);
+		
+	
+	
+			
+			if (a.equals("1")) {
 				option = "strongly disagree";
 			}
-			if (answer.equals("2")) {
+			else if (a.equals("2")) {
 				option = "disagree";
 			}
-			if (answer.equals("3")) {
+			else if (a.equals("3")) {
 				option = "I'm not sure";
 			}
-			if (answer.equals("4")) {
+			else if (a.equals("4")) {
 				option = "agree";
 			}
-			if (answer.equals("5")) {
+			else if (a.equals("5")) {
 				option = "strongly agree";
 			}
+			else {
+				option = "Candidate hasn't answered to this question yet.";
+			}
 			
-			out.println("<p>" + answer+ ": " + option + "</p>");
+			out.println("<p>" + a+ ": " + option + "</p>");
 			
 		}
-	}
+		
+		else {
+			option = "Candidate hasn't answered to this question yet.";
+			out.println("<p>" + option + "</p>");
+		}
+		
+			
+		
+	
 	
 	out.println("</div>");
 	
