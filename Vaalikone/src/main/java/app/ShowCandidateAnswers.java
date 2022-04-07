@@ -44,10 +44,6 @@ public class ShowCandidateAnswers extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setContentType("text/plain");
-	    response.setCharacterEncoding("UTF-8");
-		
 	    String etunimi = request.getParameter("etunimi");
 	    String sukunimi = request.getParameter("sukunimi");
 	    
