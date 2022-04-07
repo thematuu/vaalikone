@@ -45,7 +45,7 @@
 					out.println("<input type='hidden' name='etunimi' value='"+q.getCandidateFirstName()+"'>");
 					out.println("<input type='hidden' name='sukunimi' value='"+q.getCandidateLastName()+"'>");
 					out.println("<input type='submit' name='ok' value='Show candidate answers'>");
-					out.println("</div>");
+					out.println("</form></div>");
 				}
 			}
 
