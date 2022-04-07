@@ -118,6 +118,7 @@ public class Vaalikone extends HttpServlet {
 		ArrayList<questions> questionList = (ArrayList<questions>) list;
 		ArrayList<candidate> candidateList = (ArrayList<candidate>) list2;
 		ArrayList<ResultScoring> Scorelist = new ArrayList<ResultScoring>() ;
+		try {
 		for (int j = 0; candidateList != null && j < candidateList.size(); j++) {
 			//response.getWriter().println();
 			//response.getWriter().println();
@@ -169,22 +170,26 @@ public class Vaalikone extends HttpServlet {
 
 			}
 		}
-		/// sortti tÃ¤hÃ¤n !!!!
-		/// Collections.sort(Scorelist); 
 		Collections.sort(Scorelist);
 		for (int j = 0; Scorelist != null && j < Scorelist.size(); j++) {
 			ResultScoring s = Scorelist.get(j);
 			System.out.println("Candidate ID: " + s.getId());
 			System.out.println("Candidate TotalPoints: " + s.getTotalPoints());
+			
+			request.setAttribute("questionList", list);
+			request.setAttribute("candidateList", list2);
+			request.setAttribute("Scorelist", Scorelist);
+			// request.setAttribute("candidateAnswer", s);
+			RequestDispatcher rd=request.getRequestDispatcher("/jsp/showresults.jsp");
+			rd.forward(request, response);
 		}
 		// Test
-
-		request.setAttribute("questionList", list);
-		request.setAttribute("candidateList", list2);
-		request.setAttribute("Scorelist", Scorelist);
-		// request.setAttribute("candidateAnswer", s);
-		RequestDispatcher rd=request.getRequestDispatcher("/jsp/showresults.jsp");
-		rd.forward(request, response);
+		}
+		catch (Exception e) {
+			response.getWriter().println("Ehdokkaat eivät ole vielä vastannet kaikkiin kysymyksiin tai jokin muu meni pieleen.");
+		}
+		
+		
 
 	}
 

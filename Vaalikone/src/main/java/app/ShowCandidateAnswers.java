@@ -65,8 +65,8 @@ public class ShowCandidateAnswers extends HttpServlet {
 		
 		request.setAttribute("answerList", list);
 		request.setAttribute("questionList", list2);
-		//request.setAttribute("candidateFirstname", etunimi);
-		//request.setAttribute("candidateLastname", sukunimi);
+		request.setAttribute("candidateFirstname", etunimi);
+		request.setAttribute("candidateLastname", sukunimi);
 		RequestDispatcher rd=request.getRequestDispatcher("/jsp/ShowCandidateAnswers.jsp");
 		rd.forward(request, response);
 	    
