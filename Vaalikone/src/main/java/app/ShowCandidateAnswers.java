@@ -1,6 +1,7 @@
 package app;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -55,6 +56,12 @@ public class ShowCandidateAnswers extends HttpServlet {
 		else {
 			System.out.println("No connection to the database!");
 		}
+		ArrayList<questions> list4= null;
+		if (dao.getConnection()) {
+			list4 = dao.readAllQuestions();
+		} else {
+			System.out.println("No connection to the database!");
+		}
 		
 		
 	    
@@ -82,12 +89,25 @@ public class ShowCandidateAnswers extends HttpServlet {
 
 		}
 		
+		Cookie[] cookies = request.getCookies();
+		ArrayList<String> list5=new ArrayList<String>();
 		
+		ArrayList<questions> questionList = (ArrayList<questions>) list4;
 		
+		for (int i = 0; questionList != null && i < questionList.size(); i++) {
+			questions q = questionList.get(i);
+			String kid = Integer.toString(q.getId());
+		for (int l = 0; l < cookies.length; l++) {
+			Cookie cookie1 = cookies[l];
+			int userAnswer = 0;
+			if (cookie1.getName().equals("id" + kid)) {
+				list5.add(cookie1.getValue());
+			}
+		}
+	}
 	
 		
-		
-
+		request.setAttribute("cookieList", list5);
 		request.setAttribute("answerList", list3);
 		request.setAttribute("questionList", list2);
 		request.setAttribute("candidateFirstName", etunimi);
