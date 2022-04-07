@@ -47,7 +47,7 @@ for (int i=0;questionList!=null && i<questionList.size();i++){
 				option = "disagree";
 			}
 			else if (a.equals("3")) {
-				option = "I'm not sure";
+				option = "neutral";
 			}
 			else if (a.equals("4")) {
 				option = "agree";
@@ -84,7 +84,7 @@ for (int i=0;questionList!=null && i<questionList.size();i++){
 				option = "disagree";
 			}
 			else if (a.equals("3")) {
-				option = "I'm not sure";
+				option = "neutral";
 			}
 			else if (a.equals("4")) {
 				option = "agree";
