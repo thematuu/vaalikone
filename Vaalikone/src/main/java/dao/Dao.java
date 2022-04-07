@@ -207,7 +207,11 @@ public class Dao {
 			}
 			
 			return list;
-
+		}
+		catch(SQLException e) {
+			return null;
+		}
+	}
 	public String readAnswer(String eid, String kid) {
 		String a=null;
 		try {
