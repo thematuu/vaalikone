@@ -15,6 +15,7 @@ import data.candidate;
 
 import java.sql.Connection;
 import java.sql.Connection;
+import data.answers;
 import data.party;
 import data.candidate;
 
@@ -183,7 +184,30 @@ public class Dao {
 			return null;
 		}
 	}
-	
+
+	public ArrayList<answers> readAllAnswers(String etunimi, String sukunimi) {
+		ArrayList<answers> list=new ArrayList<>();
+		try {
+			String sql="select id from ehdokas where etunimi=? and sukunimi=?";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, etunimi);
+			pstmt.setString(2, sukunimi);
+			ResultSet RS=pstmt.executeQuery();
+			String idString = String.valueOf(RS);
+			
+			String sql2="select vastaukset from vastaus where eid=?";
+			PreparedStatement pstmt2=conn.prepareStatement(sql2);
+			pstmt2.setString(1, idString);
+			RS=pstmt2.executeQuery();
+			while (RS.next()){
+				answers a=new answers();
+				a.setKid(RS.getInt("kid"));
+				a.setAnswer(RS.getString("vastaukset"));
+				list.add(a);
+			}
+			
+			return list;
+
 	public String readAnswer(String eid, String kid) {
 		String a=null;
 		try {
@@ -196,10 +220,10 @@ public class Dao {
 				a = RS.getString("vastaukset");
 			}
 			return a;
+
 		}
 		catch(SQLException e) {
 			return null;
 		}
 	}
-
 }

@@ -169,7 +169,7 @@ public class Vaalikone extends HttpServlet {
 
 			}
 		}
-		/// sortti t‰h‰n !!!!
+		/// sortti t√§h√§n !!!!
 		/// Collections.sort(Scorelist); 
 		Collections.sort(Scorelist);
 		for (int j = 0; Scorelist != null && j < Scorelist.size(); j++) {
