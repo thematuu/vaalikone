@@ -24,15 +24,6 @@
 ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
 ArrayList<candidate> candidateList=(ArrayList<candidate>)request.getAttribute("candidateList");
 ArrayList<ResultScoring> Scorelist=(ArrayList<ResultScoring>)request.getAttribute("Scorelist");
-// for (int j=0;candidateList!=null && j<candidateList.size();j++){
-// 	candidate c=candidateList.get(j);
-// 	out.println("<p>candidate ID: "+c.getId()+"</p>");
-// 	for (int i=0;questionList!=null && i<questionList.size();i++){
-// 		questions q=questionList.get(i);
-// 		out.println("<p>questions ID: "+q.getId()+"</p>");
-
-// 	}
-// }
 double maxscore = questionList.size()*2;
 for (int i = 0; Scorelist != null && i < Scorelist.size(); i++) {
 			int rank = i+1;
@@ -40,18 +31,25 @@ for (int i = 0; Scorelist != null && i < Scorelist.size(); i++) {
 			out.println("<div class='grid-item-result'>");
 			out.println("<h2>Compatibility ranking: " + rank +". </h1>");
 			//out.println("<p>Candidate ID: " + s.getId()+"</p>");
+			candidate c=null;
 			for (int j=0;candidateList!=null && j<candidateList.size();j++){
-			 	candidate c=candidateList.get(j);
+			 	c=candidateList.get(j);
 			 	if(c.getId()==s.getId()){
 			 		out.println("<p>Candidate Name: " + c.getFirstName()+" " + c.getLastName()+"</p>");
 					out.println("<p> Puolue: "+c.getParty()+"</p>");
-			 		
+					out.println("<form action='/ShowCandidateAnswers' method='post'>");
+					out.println("<input type='hidden' name='etunimi' value='"+c.getFirstName()+"'>");
+					out.println("<input type='hidden' name='sukunimi' value='"+c.getLastName()+"'>");
+					out.println("<input type='hidden' name='id' value='"+c.getId()+"'>");
+				
 			 	}
 			}
 			double score = s.getTotalPoints();
 			double prosent = score/maxscore*100;
 			DecimalFormat df = new DecimalFormat("0.0");
 			out.println("<p> Candidate fit percentage: " + df.format(prosent)+"%</p>");
+			out.println("<input type='submit' name='ok' value='Show candidate answers'>");
+			out.println("</form>");
 			out.println("</div>");
 		}
 %>	

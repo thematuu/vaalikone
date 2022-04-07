@@ -8,8 +8,7 @@ public class ResultScoring implements java.lang.Comparable<ResultScoring>{
 		int sameAnswer = 2;
 		int oneOff = 1;
 		int differentAnswer = 0;
-		//System.out.println("UserA"+uAnswer);
-		//System.out.println("CandA"+cAnswer);
+
 		if(userAnswer == canditateAnswer){
 			return sameAnswer;
 		}

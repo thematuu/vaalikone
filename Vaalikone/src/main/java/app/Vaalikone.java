@@ -82,10 +82,7 @@ public class Vaalikone extends HttpServlet {
 				response.addCookie(c);
 			}
 		}
-		// keksit loppuu
-		// keksit loppuu
-		// keksit loppuu
-		// keksit loppuu
+	
 		Cookie[] cookies = request.getCookies();
 
 		for (int i = 0; i < cookies.length; i++) {
@@ -103,18 +100,6 @@ public class Vaalikone extends HttpServlet {
 			list2 = dao.readAllCandidates();
 		}
 
-		/// TEST
-		// String s = null;
-		// if (dao.getConnection()) {
-		// String eid ="3";
-		// String kid ="11";
-		// s = dao.readAnswer(eid, kid);
-		// System.out.println(""+s);
-		// }
-		// else {
-		// System.out.println("No connection to the database!");
-		// }
-		/// TEST
 		ArrayList<questions> questionList = (ArrayList<questions>) list;
 		ArrayList<candidate> candidateList = (ArrayList<candidate>) list2;
 		ArrayList<ResultScoring> Scorelist = new ArrayList<ResultScoring>() ;
@@ -183,10 +168,10 @@ public class Vaalikone extends HttpServlet {
 			RequestDispatcher rd=request.getRequestDispatcher("/jsp/showresults.jsp");
 			rd.forward(request, response);
 		}
-		// Test
+
 		}
 		catch (Exception e) {
-			response.getWriter().println("Ehdokkaat eivät ole vielä vastannet kaikkiin kysymyksiin tai jokin muu meni pieleen.");
+			response.getWriter().println("Candidates have not yet answered all the questions or something else went wrong.");
 		}
 		
 		
