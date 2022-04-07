@@ -179,7 +179,7 @@ public class Vaalikone extends HttpServlet {
 		}
 		// Test
 
-		//request.setAttribute("questionList", list);
+		request.setAttribute("questionList", list);
 		request.setAttribute("candidateList", list2);
 		request.setAttribute("Scorelist", Scorelist);
 		// request.setAttribute("candidateAnswer", s);
