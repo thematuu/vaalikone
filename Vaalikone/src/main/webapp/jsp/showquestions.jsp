@@ -29,7 +29,7 @@ for (int i=0;questionList!=null && i<questionList.size();i++){
 				<p>
 				<input type="radio" id=<%out.println(q.getId() + "-option-5");%> value=<%out.println(q.getId() + "-option-5");%> name=<%out.println(name);%>>strongly agree
 				<input type="radio" id=<%out.println(q.getId() + "-option-4");%> value=<%out.println(q.getId() + "-option-4");%> name=<%out.println(name);%>>agree
-				<input type="radio" id=<%out.println(q.getId() + "-option-3");%> value=<%out.println(q.getId() + "-option-3");%> name=<%out.println(name);%> checked>I'm not sure
+				<input type="radio" id=<%out.println(q.getId() + "-option-3");%> value=<%out.println(q.getId() + "-option-3");%> name=<%out.println(name);%> checked>neutral
                 <input type="radio" id=<%out.println(q.getId() + "-option-2");%> value=<%out.println(q.getId() + "-option-2");%> name=<%out.println(name);%>>disagree 
                 <input type="radio" id=<%out.println(q.getId() + "-option-1");%> value=<%out.println(q.getId() + "-option-1");%> name=<%out.println(name);%>>strongly disagree
                	</p>

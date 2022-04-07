@@ -26,12 +26,28 @@ public class answers {
 	public void setEid(int eid) {
 		this.eid = eid;
 	}
+	public void setEid(String eid) {
+		try {
+		this.eid = Integer.parseInt(eid);
+		}
+		catch(NumberFormatException | NullPointerException e) {
+			//Do nothing - the value of id won't be changed
+		}
+	}
 	public int getKid() {
 		return kid;
 	}
 	public void setKid(int kid) {
 		this.kid = kid;
 	}
+//	public void setKid(String kid) {
+//		try {
+//		this.eid = Integer.parseInt(kid);
+//		}
+//		catch(NumberFormatException | NullPointerException e) {
+//			//Do nothing - the value of id won't be changed
+//		}
+//	}
 	public void setId(String id) {
 		try {
 			this.id = Integer.parseInt(id);

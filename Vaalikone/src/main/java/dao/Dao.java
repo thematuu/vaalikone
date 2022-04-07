@@ -185,23 +185,27 @@ public class Dao {
 		}
 	}
 
-	public ArrayList<answers> readAllAnswers(String etunimi, String sukunimi) {
+	public ArrayList<answers> readAllAnswers() {
 		ArrayList<answers> list=new ArrayList<>();
 		try {
-			String sql="select id from ehdokas where etunimi=? and sukunimi=?";
-			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, etunimi);
-			pstmt.setString(2, sukunimi);
-			ResultSet RS=pstmt.executeQuery();
-			String idString = String.valueOf(RS);
+//			String sql="select id from ehdokas where etunimi=? and sukunimi=?";
+//			PreparedStatement pstmt=conn.prepareStatement(sql);
+//			pstmt.setString(1, etunimi);
+//			pstmt.setString(2, sukunimi);
+//			ResultSet RS=pstmt.executeQuery();
+//			String idString = String.valueOf(RS);
 			
-			String sql2="select vastaukset from vastaus where eid=?";
-			PreparedStatement pstmt2=conn.prepareStatement(sql2);
-			pstmt2.setString(1, idString);
-			RS=pstmt2.executeQuery();
+			
+//			String sql2="select vastaukset from vastaus where eid=? and kid=?";
+			Statement pstmt2=conn.createStatement();
+//			pstmt2.setString(1, idString);
+//			pstmt2.setString(2, kid);
+			ResultSet RS=pstmt2.executeQuery("select * from vastaus");
 			while (RS.next()){
 				answers a=new answers();
-				a.setKid(RS.getInt("kid"));
+				a.setId(RS.getString("id"));
+				a.setKid(Integer.parseInt(RS.getString("kid")));
+				a.setEid(RS.getString("eid"));
 				a.setAnswer(RS.getString("vastaukset"));
 				list.add(a);
 			}
