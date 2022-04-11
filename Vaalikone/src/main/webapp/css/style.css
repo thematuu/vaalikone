@@ -109,7 +109,7 @@ body {
 
 .grid-item-party:hover{
 	background-color: #66FCF1;
-	border: #0B0C10;
+	border: 1px solid #0B0C10;
 }
 
 .grid-container-candidate {
@@ -191,7 +191,7 @@ body {
   }
 .grid-item-index:hover{
 	background-color: #66FCF1;
-	border: #0B0C10;
+	border: 1px solid #0B0C10;
 }
 
 /* Style the header with a grey background and some padding */
