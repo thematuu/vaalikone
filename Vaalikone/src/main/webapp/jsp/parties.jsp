@@ -15,7 +15,7 @@
 </head>
 <body>
 <%@ include file="../html/header.html" %>
-<h1>Candidates</h1>
+<h1>Parties</h1>
 <div class='grid-container-party'>
 <%
 ArrayList<party> questionList=(ArrayList<party>)request.getAttribute("questionList");
