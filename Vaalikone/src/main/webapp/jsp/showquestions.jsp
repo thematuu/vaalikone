@@ -14,35 +14,42 @@
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-<h2>Answer these questions: </h2>
+<%@ include file="../html/header.html" %>
+<h1>Answer these questions: </h1>
 <br><br>
 	<form action="/Vaalikone" method="POST">
-	<div class='grid-container'>
+	<div class='grid-container-questions'>
 <%
 ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
 int name = 0;
 for (int i=0;questionList!=null && i<questionList.size();i++){
 	questions q=questionList.get(i);
-	out.println("<div class='grid-item'>");
-	out.println(i+1 + ": " + q.getQuestion()+"<br>");
+	out.println("<div class='grid-item-questions'>");
+	out.println(i+1 + ": " + q.getQuestion()+"<br><br>");
 	%>
-				<p>
-				<input type="radio" id=<%out.println(q.getId() + "-option-5");%> value=<%out.println(q.getId() + "-option-5");%> name=<%out.println(name);%>>strongly agree
-				<input type="radio" id=<%out.println(q.getId() + "-option-4");%> value=<%out.println(q.getId() + "-option-4");%> name=<%out.println(name);%>>agree
-				<input type="radio" id=<%out.println(q.getId() + "-option-3");%> value=<%out.println(q.getId() + "-option-3");%> name=<%out.println(name);%> checked>neutral
-                <input type="radio" id=<%out.println(q.getId() + "-option-2");%> value=<%out.println(q.getId() + "-option-2");%> name=<%out.println(name);%>>disagree 
-                <input type="radio" id=<%out.println(q.getId() + "-option-1");%> value=<%out.println(q.getId() + "-option-1");%> name=<%out.println(name);%>>strongly disagree
-               	</p>
+				<input type="radio" id=<%out.println(q.getId() + "-option-5");%> value=<%out.println(q.getId() + "-option-5");%> name=<%out.println(name);%>>
+				<label for=<%out.println(q.getId() + "-option-5");%>>strongly agree</label>
+				<input type="radio" id=<%out.println(q.getId() + "-option-4");%> value=<%out.println(q.getId() + "-option-4");%> name=<%out.println(name);%>>
+				<label for=<%out.println(q.getId() + "-option-4");%>>agree</label>
+				<input type="radio" id=<%out.println(q.getId() + "-option-3");%> value=<%out.println(q.getId() + "-option-3");%> name=<%out.println(name);%> checked>
+                <label for=<%out.println(q.getId() + "-option-3");%>>neutral</label>
+                <input type="radio" id=<%out.println(q.getId() + "-option-2");%> value=<%out.println(q.getId() + "-option-2");%> name=<%out.println(name);%>>
+                <label for=<%out.println(q.getId() + "-option-2");%>>disagree</label>
+                <input type="radio" id=<%out.println(q.getId() + "-option-1");%> value=<%out.println(q.getId() + "-option-1");%> name=<%out.println(name);%>>
+               	<label for=<%out.println(q.getId() + "-option-1");%>>strongly disagree</label>
     		<%out.println("</div>");
     		name++;
     		%>
     		
 	<%}%>
+	
 	</div>
-            <p>
-                <input type="submit" value="Submit">
-            </p>
-        </form>	
+	<div class='grid-container-questions'>
+	<div style='width: 50%; margin: 0 auto;'>
+        <input class='question' type="submit" value="Submit">
+               </div>
+                </div>
+        </form>	    
 
 </body>
 </html>

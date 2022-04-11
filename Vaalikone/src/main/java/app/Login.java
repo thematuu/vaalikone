@@ -10,7 +10,7 @@ import data.MD5;
 import java.sql.*;
 import java.util.ArrayList;
 
-@WebServlet("/Login")
+@WebServlet("/Admin")
 public class Login extends HttpServlet {
 	private static Dao dao;
 

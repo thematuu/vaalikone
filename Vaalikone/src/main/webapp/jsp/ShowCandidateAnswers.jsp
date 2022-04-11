@@ -18,7 +18,9 @@
 <% 	String candidateFirstname = String.valueOf(request.getAttribute("candidateFirstName"));
 	String candidateLastname = String.valueOf(request.getAttribute("candidateLastName"));
 %>
-<h2>Candidate <%out.println(candidateFirstname + " " + candidateLastname);%> answers: </h2>
+
+<%@ include file="../html/header.html" %>
+<h1>Candidate <%out.println(candidateFirstname + " " + candidateLastname);%> answers: </h1>
 <br><br>
 	
 	<div class='grid-container'>
