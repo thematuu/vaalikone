@@ -108,8 +108,8 @@ body {
   }
 
 .grid-item-party:hover{
-	background-color: #ddd;
-	text-color: white;
+	background-color: #66FCF1;
+	border: #0B0C10;
 }
 
 .grid-container-candidate {
@@ -190,8 +190,8 @@ body {
     border-radius: 4px;
   }
 .grid-item-index:hover{
-	background-color: #ddd;
-	text-color: white;
+	background-color: #66FCF1;
+	border: #0B0C10;
 }
 
 /* Style the header with a grey background and some padding */
