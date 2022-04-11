@@ -7,6 +7,8 @@
 }
 
 h1 {
+  font-weight: bold;
+  color: #66FCF1;
   padding: 35px 35px 0 35px;
   font-weight: 300;
   text-align: center;
@@ -22,8 +24,8 @@ h1 {
 }
 
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: #C5C6C7;
+  border: 1px solid #66FCF1;
   padding: 10px;
   font-size: 16px;
   text-align: center;
@@ -31,19 +33,22 @@ h1 {
 }
 input[type=submit] {
   width: 100%;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #45A29E;
+  color: 0B0C10;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
+input[type=submit]:hover {
+	background-color: #66FCF1;
+}
 .grid-item-result {
   margin: 0 auto;
   width: 50%;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: #C5C6C7;
+  border: 1px solid #66FCF1;
   padding: 10px;
   font-size: 16px;
   text-align: center;
@@ -52,7 +57,7 @@ input[type=submit] {
 
 body {
 	font-family: Arial, Helvetica, sans-serif;
-	background-color: #2196F3;
+	background-color: #1F2833;
 }
 .grid-container-party {
   display: grid;
@@ -65,8 +70,8 @@ body {
 .grid-item-party {
   margin: 0 auto;
   width: 25%;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: #C5C6C7;
+  border: 1px solid #66FCF1;
   padding: 10px;
   font-size: 24px;
   text-align: center;
@@ -85,7 +90,7 @@ body {
   margin: 0 auto;
   width: 25%;
   background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 1px solid #66FCF1;
   padding: 10px;
   font-size: 14px;
   text-align: center;
@@ -118,8 +123,8 @@ body {
 .grid-item-candidate {
   margin: 0 auto;
   width: 25%;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: #C5C6C7;
+  border: 1px solid #66FCF1;
   padding: 10px;
   font-size: 24px;
   text-align: center;
@@ -144,7 +149,7 @@ body {
   cursor: pointer;
   text-transform: uppercase;
   background: #e8e9ec;
-  color: #777;
+  color: #0B0C10;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 0;
   letter-spacing: 0.2px;
@@ -153,7 +158,7 @@ body {
   transition: all .3s;
 }
 .grid-item-candidate input:hover {
-  background: #d8d8d8;
+  background: #66FCF1;
 }
 
 .grid-container-index {
@@ -167,8 +172,8 @@ body {
 .grid-item-index {
   margin: 0 auto;
   width: 25%;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: #C5C6C7;
+  border: 1px solid #66FCF1;
   padding: 10px;
   font-size: 16px;
   text-align: center;
@@ -192,7 +197,7 @@ body {
 /* Style the header with a grey background and some padding */
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #0B0C10;
     padding: 20px 10px;
     border-radius: 10px;
   }
@@ -200,7 +205,7 @@ body {
   /* Style the header links */
   .header a {
     float: left;
-    color: black;
+    color: #66FCF1;
     text-align: center;
     padding: 12px;
     text-decoration: none;
@@ -217,7 +222,7 @@ body {
   
   /* Change the background color on mouse-over */
   .header a:hover {
-    background-color: #ddd;
+    background-color: #45A29E;
     color: black;
   }
   
@@ -230,7 +235,7 @@ body {
   
   
   .login-form {
-  background: #fff;
+  background: #C5C6C7;
   width: 500px;
   margin: 65px auto;
   display: -webkit-box;
@@ -243,7 +248,10 @@ body {
 }
 .login-form h1 {
   padding: 35px 35px 0 35px;
-  font-weight: 300;
+  font-weight: 700;
+  color: #0B0C10;
+  font-weight: bold;
+  text-align: center;
 }
 .login-form .content {
   padding: 35px;
@@ -262,6 +270,7 @@ body {
   border-bottom: 1px solid #747474;
   outline: none;
   transition: all .2s;
+  background: #C5C6C7;
 }
 
 .login-form a.link {
@@ -286,7 +295,7 @@ body {
   cursor: pointer;
   text-transform: uppercase;
   background: #e8e9ec;
-  color: #777;
+  color: #0B0C10;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 0;
   letter-spacing: 0.2px;
@@ -295,7 +304,7 @@ body {
   transition: all .3s;
 }
 .login-form .action input:hover {
-  background: #d8d8d8;
+  background: #66FCF1;
 }
 
 .grid-container-questions {
@@ -309,8 +318,8 @@ body {
 .grid-item-questions {
   margin: 0 auto;
   width: 75%;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: #C5C6C7;
+  border: 1px solid #66FCF1;
   padding: 10px;
   font-size: 24px;
   text-align: center;
@@ -325,20 +334,24 @@ input[type="radio"] {
 
 label {
     display: inline-block;
-    background-color: #ddd;
+    background-color: #C5C6C7;
     padding: 10px 20px;
     font-family: sans-serif, Arial;
     font-size: 16px;
     border: 2px solid #444;
     border-radius: 4px;
+    border-color: #0B0C10;
 }
 
 input[type="radio"]:checked + label {
-    background-color:#bfb;
-    border-color: #444;
+    background-color:#0B0C10;
+    border-color: #66FCF1;
+    color: #66FCF1;
 }
 
 
 .grid-item-questions label:hover {
-  background-color: #dfd;
+  background-color: #66FCF1;
 }
+
+

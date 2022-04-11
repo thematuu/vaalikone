@@ -20,7 +20,7 @@
 %>
 
 <%@ include file="../html/header.html" %>
-<h1>Candidate <%out.println(candidateFirstname + " " + candidateLastname);%> answers: </h1>
+<h1>Candidate <%out.println(candidateFirstname + " " + candidateLastname + "'s");%> answers: </h1>
 <br><br>
 	
 	<div class='grid-container'>
@@ -31,7 +31,7 @@ ArrayList<String> cookieList=(ArrayList<String>)request.getAttribute("cookieList
 for (int i=0;questionList!=null && i<questionList.size();i++){
 	questions q=questionList.get(i);
 	out.println("<div class='grid-item'>");
-	out.println(q.getQuestion()+"<br>");
+	out.println(i+1 + ": " + q.getQuestion()+"<br>");
 	String id = Integer.toString(q.getId());
 		
 		String a = null;
