@@ -23,14 +23,14 @@
 <h1>Candidate <%out.println(candidateFirstname + " " + candidateLastname + "'s");%> answers: </h1>
 <br><br>
 	
-	<div class='grid-container'>
+	<div class='grid-container-questions'>
 <%
 ArrayList<String> answerList=(ArrayList<String>)request.getAttribute("answerList");
 ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");
 ArrayList<String> cookieList=(ArrayList<String>)request.getAttribute("cookieList");
 for (int i=0;questionList!=null && i<questionList.size();i++){
 	questions q=questionList.get(i);
-	out.println("<div class='grid-item'>");
+	out.println("<div class='grid-item-questions'>");
 	out.println(i+1 + ": " + q.getQuestion()+"<br>");
 	String id = Integer.toString(q.getId());
 		
@@ -39,39 +39,67 @@ for (int i=0;questionList!=null && i<questionList.size();i++){
 		if (i < answerList.size()) {
 			a=answerList.get(i);
 		
-	
+			out.println("<p> Candidate answer: </p>");
 	
 			
 			if (a.equals("1")) {
-				option = "strongly disagree";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test-selected'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test'><p>agree</p></div>");
+				out.println("<div class='grid-item-test'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else if (a.equals("2")) {
-				option = "disagree";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test-selected'><p>agree</p></div>");
+				out.println("<div class='grid-item-test'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else if (a.equals("3")) {
-				option = "neutral";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test'><p>agree</p></div>");
+				out.println("<div class='grid-item-test-selected'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else if (a.equals("4")) {
-				option = "agree";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test'><p>agree</p></div>");
+				out.println("<div class='grid-item-test'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test-selected'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else if (a.equals("5")) {
-				option = "strongly agree";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test'><p>agree</p></div>");
+				out.println("<div class='grid-item-test'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test-selected'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else {
-				option = "Candidate hasn't answered to this question yet.";
+				out.println("<p>Candidate hasn't answered to this question yet.</p>");
 			}
 			
-			out.println("<p> Candidate answer: " + a+ ": " + option + "</p>");
 			
 		}
 		
 		else {
-			option = "Candidate hasn't answered to this question yet.";
-			out.println("<p>" + option + "</p>");
+			out.println("<p>Candidate hasn't answered to this question yet.</p>");
 		}
 		
 		if (cookieList.size() != 0) {
-			out.println("<p> Your answer: ");
+			out.println("<p> Your answer: </p>");
 		
 		if (i < cookieList.size()) {
 			a=cookieList.get(i);
@@ -80,31 +108,60 @@ for (int i=0;questionList!=null && i<questionList.size();i++){
 	
 			
 			if (a.equals("1")) {
-				option = "strongly disagree";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test-selected'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test'><p>agree</p></div>");
+				out.println("<div class='grid-item-test'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else if (a.equals("2")) {
-				option = "disagree";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test-selected'><p>agree</p></div>");
+				out.println("<div class='grid-item-test'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else if (a.equals("3")) {
-				option = "neutral";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test'><p>agree</p></div>");
+				out.println("<div class='grid-item-test-selected'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else if (a.equals("4")) {
-				option = "agree";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test'><p>agree</p></div>");
+				out.println("<div class='grid-item-test'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test-selected'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else if (a.equals("5")) {
-				option = "strongly agree";
+				out.println("<div class='grid-container-test'>");
+				out.println("<div class='grid-item-test'><p>strongly agree</p></div>");
+				out.println("<div class='grid-item-test'><p>agree</p></div>");
+				out.println("<div class='grid-item-test'><p>neutral</p></div>");
+				out.println("<div class='grid-item-test'><p>disagree</p></div>");
+				out.println("<div class='grid-item-test-selected'><p>strongly disagree</p></div>");
+				out.println("</div>");
 			}
 			else {
-				option = "Candidate hasn't answered to this question yet.";
+				out.println("<p>Candidate hasn't answered to this question yet.</p>");
 			}
 			
-			out.println("" + a+ ": " + option + "</p>");
+			
 			
 		}
 		
 		else {
-			option = "Candidate hasn't answered to this question yet.";
-			out.println("<p>" + option + "</p>");
+			out.println("<p>Candidate hasn't answered to this question yet.</p>");
 		}
 			
 		
