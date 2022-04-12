@@ -29,27 +29,32 @@ public class Login extends HttpServlet {
 
 		String username = request.getParameter("username");
 		String password = MD5.crypt(request.getParameter("password"));
-
+		
 		
 		if (dao.getConnection()) {
 			String s = dao.readUser(username);
-			if (s.equals(password)) {
-				ArrayList<questions> list = null;
-				if (dao.getConnection()) {
-					HttpSession session = request.getSession();
-	                session.setAttribute("user", s);
-					list = dao.readAllQuestions();
-				} else {
-					System.out.println("No connection to database");
-				}
-				HttpSession session = request.getSession(true);
-		        session.setAttribute("currentSessionUser",s);
-				request.setAttribute("questionList", list);
-				RequestDispatcher rd = request.getRequestDispatcher("/jsp/adminpage.jsp");
-				rd.forward(request, response);
+			if(s != null) {
+				if (s.equals(password)) {
+					ArrayList<questions> list = null;
+					if (dao.getConnection()) {
+						HttpSession session = request.getSession(true);
+				        session.setAttribute("currentSessionUser",s);
+						list = dao.readAllQuestions();
+					} else {
+						System.out.println("No connection to database");
+					}
 
-			} else {
-				response.getWriter().print("Wrong password!");
+					request.setAttribute("questionList", list);
+					RequestDispatcher rd = request.getRequestDispatcher("/jsp/adminpage.jsp");
+					rd.forward(request, response);
+
+				} else {
+					response.getWriter().print("Wrong password!");
+
+				}
+			}
+			else {
+				response.getWriter().print("Wrong username or password!");
 
 			}
 			

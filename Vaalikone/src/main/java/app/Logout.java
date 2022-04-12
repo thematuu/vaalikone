@@ -24,7 +24,7 @@ public class Logout extends HttpServlet {
 
 		request.getRequestDispatcher("admin.html").include(request, response);
 
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		session.invalidate();
 
 		//out.print("You are successfully logged out!");
