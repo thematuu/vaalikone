@@ -179,6 +179,17 @@ body {
   border-radius: 10px;
 }
 
+.grid-item-error {
+  margin: 0 auto;
+  width: 25%;
+  background-color: #FF0000;
+  border: 1px solid #0B0C10;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 10px;
+}
+
   .grid-item-index a {
     color: black;
     text-align: center;

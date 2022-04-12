@@ -171,7 +171,8 @@ public class Vaalikone extends HttpServlet {
 
 		}
 		catch (Exception e) {
-			response.getWriter().println("Candidates have not yet answered all the questions or something else went wrong.");
+			RequestDispatcher rd=request.getRequestDispatcher("/html/error.html");
+			rd.forward(request, response);
 		}
 		
 		
