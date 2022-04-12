@@ -45,7 +45,19 @@ public class Vaalikone extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
+		Cookie[] cookies = request.getCookies();
+		for (int i = 0; i < cookies.length; i++) {
+			Cookie cookie = cookies[i];
 
+			Cookie cookiee = new Cookie(cookie.getName(), "");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
+		}
+		catch (Exception e){
+			//do nothing
+		}
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 
@@ -82,13 +94,9 @@ public class Vaalikone extends HttpServlet {
 				response.addCookie(c);
 			}
 		}
-	
-		
 
-			RequestDispatcher rd=request.getRequestDispatcher("/html/showresults.html");
-			rd.forward(request, response);
-		
-		
+		RequestDispatcher rd = request.getRequestDispatcher("/html/showresults.html");
+		rd.forward(request, response);
 
 	}
 
