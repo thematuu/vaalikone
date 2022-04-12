@@ -11,6 +11,12 @@
 <title>ADMIN PAGE</title>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
+ <div class="header">
+        <a href="/index.html" class="logo">Election compass</a>
+        <div class="header-right">
+          <a href="/Logout">Logout</a>
+        </div>
+      </div>
 <body>
 <%@ include file="../html/somehtml.html" %>
 <%
@@ -21,7 +27,8 @@ response.sendRedirect("/admin.html");
 else{
 }
 %>
-<a href="Logout">Logout</a>
+<div class='grid-container-admin'>
+<div class='grid-item-admin'>
 <h2>Add question!</h2>
         <form action="/AddQuestion" method="POST">
             <p>
@@ -31,6 +38,9 @@ else{
                 <input type="submit" value="Add">
             </p>
         </form>	
+        </div>
+</div>
+
         <div class='grid-container'>
 <%
 ArrayList<questions> questionList=(ArrayList<questions>)request.getAttribute("questionList");

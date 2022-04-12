@@ -14,7 +14,8 @@
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-<h1>Candidates</h1>
+<%@ include file="../html/header.html" %>
+<h1>Parties</h1>
 <div class='grid-container-party'>
 <%
 ArrayList<party> questionList=(ArrayList<party>)request.getAttribute("questionList");
@@ -25,13 +26,14 @@ for (int i=0;questionList!=null && i<questionList.size();i++){
 		party = "Vihreat";
 	}
 	out.println("<div class='grid-item-party'>");
-	out.println("<h1><a href='/Ehdokkaat?party="+party+"'>"+q.getParties() +"</a><br></h1>");
+	out.println("<a href='/Ehdokkaat?party="+party+"'>"+q.getParties() +"</a>");
 	out.println("</div>");
 }
 %>
 <div class='grid-item-party'>
-<h1><a href='/Ehdokkaat?party=all'>Show all candidates</a></h1>
+<a href='/Ehdokkaat?party=all'>Show all candidates</a>
 </div>
 </div>
+
 </body>
 </html>

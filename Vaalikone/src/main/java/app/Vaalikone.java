@@ -45,7 +45,19 @@ public class Vaalikone extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
+		Cookie[] cookies = request.getCookies();
+		for (int i = 0; i < cookies.length; i++) {
+			Cookie cookie = cookies[i];
 
+			Cookie cookiee = new Cookie(cookie.getName(), "");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
+		}
+		catch (Exception e){
+			//do nothing
+		}
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 
@@ -82,99 +94,9 @@ public class Vaalikone extends HttpServlet {
 				response.addCookie(c);
 			}
 		}
-	
-		Cookie[] cookies = request.getCookies();
 
-		for (int i = 0; i < cookies.length; i++) {
-			System.out.println(cookies[i].getName() + " " + cookies[i].getValue());
-		}
-		
-		ArrayList<questions> list = null;
-		if (dao.getConnection()) {
-			list = dao.readAllQuestions();
-		} else {
-			System.out.println("No connection to the database!");
-		}
-		ArrayList<candidate> list2 = null;
-		if (dao.getConnection()) {
-			list2 = dao.readAllCandidates();
-		}
-
-		ArrayList<questions> questionList = (ArrayList<questions>) list;
-		ArrayList<candidate> candidateList = (ArrayList<candidate>) list2;
-		ArrayList<ResultScoring> Scorelist = new ArrayList<ResultScoring>() ;
-		try {
-		for (int j = 0; candidateList != null && j < candidateList.size(); j++) {
-			//response.getWriter().println();
-			//response.getWriter().println();
-			candidate c = candidateList.get(j);
-			//response.getWriter().println("candidate ID: " + c.getId());
-			for (int i = 0; questionList != null && i < questionList.size(); i++) {
-				questions q = questionList.get(i);
-				//response.getWriter().println("questions ID: " + q.getId());
-
-				String canditateAnswer = null;
-				if (dao.getConnection()) {
-					String eid = Integer.toString(c.getId());
-					String kid = Integer.toString(q.getId());
-					canditateAnswer = dao.readAnswer(eid, kid);
-					int canditateAnswerInt = Integer.parseInt(canditateAnswer);
-					//response.getWriter().println("Canditaatin vastaus: " + canditateAnswerInt);
-					for (int l = 0; l < cookies.length; l++) {
-						Cookie cookie1 = cookies[l];
-						int userAnswer = 0;
-						if (cookie1.getName().equals("id" + kid)) {
-							userAnswer = Integer.parseInt(cookie1.getValue());
-							//response.getWriter().print("Vastasit: " + userAnswer);
-							//response.getWriter().println();
-							ResultScoring rs = new ResultScoring();
-							int score = rs.score(userAnswer, canditateAnswerInt);
-							//response.getWriter().println("Score: " + score);
-							System.out.println(j);
-							if (j >= Scorelist.size() || j < 0) {  //Scorelist.get(j) != null //Scorelist.size()==j
-								System.out.println("TESTI");
-								ResultScoring s = new ResultScoring();
-								s.setId(Integer.parseInt(eid));
-								s.setTotalPoints(score);
-								Scorelist.add(s);
-								
-							}
-							else{
-								int TotalScore=score+Scorelist.get(j).getTotalPoints();
-								Scorelist.get(j).setTotalPoints(TotalScore);
-								System.out.println("boo");
-							}
-							System.out.println(Scorelist.get(j));
-						}
-					}
-					//response.getWriter().println();
-
-				} else {
-					System.out.println("No connection to the database!");
-				}
-
-			}
-		}
-		Collections.sort(Scorelist);
-		for (int j = 0; Scorelist != null && j < Scorelist.size(); j++) {
-			ResultScoring s = Scorelist.get(j);
-			System.out.println("Candidate ID: " + s.getId());
-			System.out.println("Candidate TotalPoints: " + s.getTotalPoints());
-			
-			request.setAttribute("questionList", list);
-			request.setAttribute("candidateList", list2);
-			request.setAttribute("Scorelist", Scorelist);
-			// request.setAttribute("candidateAnswer", s);
-			RequestDispatcher rd=request.getRequestDispatcher("/jsp/showresults.jsp");
-			rd.forward(request, response);
-		}
-
-		}
-		catch (Exception e) {
-			response.getWriter().println("Candidates have not yet answered all the questions or something else went wrong.");
-		}
-		
-		
+		RequestDispatcher rd = request.getRequestDispatcher("/html/showresults.html");
+		rd.forward(request, response);
 
 	}
 

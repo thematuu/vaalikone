@@ -16,7 +16,8 @@
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-<h2>Results: </h2>
+<%@ include file="../html/header.html" %>
+<h1>Results: </h1>
 <br>
 <div class='grid-container-result '>
 <%

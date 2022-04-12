@@ -13,8 +13,10 @@
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
+<%@ include file="../html/header.html" %>
+
 	<h1>Candidates</h1>
-	<div class='grid-container-party'>
+	<div class='grid-container-candidate'>
 	<%
 		String party = request.getParameter("party");
 		if (party.equals("Vihreat")) {
@@ -24,7 +26,7 @@
 		if (party.equals("all")) {
 			for (int i = 0; questionList != null && i < questionList.size(); i++) {
 				candidate q = questionList.get(i);
-				out.println("<div class='grid-item-party'>");
+				out.println("<div class='grid-item-candidate'>");
 				out.println("<p>Name: " + q.getCandidateFirstName() + " "
 						+ q.getCandidateLastName() + "<br>Party: " + q.getCandidateParty() + "</p>");
 				out.println("<form action='/ShowCandidateAnswers' method='post'>");
@@ -39,7 +41,7 @@
 				candidate q = questionList.get(i);
 
 				if (q.getCandidateParty().equals(party)) {
-					out.println("<div class='grid-item-party'>");
+					out.println("<div class='grid-item-candidate'>");
 					out.println("<p>Name: " + q.getCandidateFirstName() + " "
 							+ q.getCandidateLastName() + "<br>Party: " + q.getCandidateParty() + "</p>");
 					out.println("<form action='/ShowCandidateAnswers' method='post'>");
@@ -54,5 +56,6 @@
 		}
 	%>
 	</div>
+
 </body>
 </html>
