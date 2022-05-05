@@ -17,7 +17,7 @@ import data.questions;
 import data.candidate;
 
 /**
- * Servlet implementation class Converter
+ * servlet for candidates
  */
 @WebServlet("/Ehdokkaat")
 public class Ehdokkaat extends HttpServlet {

@@ -1,4 +1,8 @@
 package data;
+/**
+ * User object
+ *
+ */
 
 public class User {
 	private int id;
